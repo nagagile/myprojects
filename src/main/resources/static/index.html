@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet"
+	href="./bower_components/bootstrap-css-only/css/bootstrap.min.css" />
+<style>
+table, td {
+	border: 0px solid grey;
+	border-collapse: collapse;
+	padding: 5px;
+}
+</style>
+</head>
+<body ng-app="myApp">
+	<div class="container" ng-controller="AppController">
+		<div class="page-header">
+			<h1>My Todo list</h1>
+		</div>
+		<div class="alert alert-info" role="alert"
+			ng-hide="items &amp;&amp; items.length > 0">Todo list is
+			empty!!</div>
+
+		<form class="form-horizontal" role="form" ng-submit="addItem(tName)">
+
+			<table>
+				<tr class="success">
+					<td>
+						<input type="text" class="form-control" ng-model="tName"
+						placeholder="New todo task.." />
+					</td>
+					<td>
+						<textarea class="form-control" ng-model="tDesc"
+							placeholder="New todo task description.."></textarea>
+					</td>
+					<td>
+							<button class="btn btn-success" type="submit"
+								ng-disabled="!(tName &amp;&amp; tDesc)" title="Add">
+								<span class="glyphicon glyphicon-plus"></span>
+							</button>
+					</td>
+					<td>&nbsp;</td>
+				</tr>
+
+				<tr ng-repeat="task in items">
+					<td><input type="text" class="form-control"
+						ng-model="task.name" /></td>
+					<td><textarea class="form-control" ng-model="task.description"></textarea>
+					</td>
+					<td>
+						<button class="pull-right btn btn-danger" type="button"
+							title="Delete" ng-click="deleteItem(task)">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+					</td>
+					<td>
+						<button class="pull-right btn btn-success" type="button"
+							title="Update" ng-click="updateItem(task)">
+							<span class="glyphicon glyphicon-floppy-save"></span>
+						</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<script type="text/javascript"
+		src="./bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript"
+		src="./bower_components/angular-resource/angular-resource.min.js"></script>
+	<script type="text/javascript"
+		src="./bower_components/lodash/dist/lodash.min.js"></script>
+	<script type="text/javascript" src="./app/app.js"></script>
+	<script type="text/javascript" src="./app/controllers.js"></script>
+	<script type="text/javascript" src="./app/services.js"></script>
+</body>
+</html>
